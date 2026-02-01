@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/model/restaurant.dart';
 
 class BodyOfDetailScreenWidget extends StatelessWidget {
-  const BodyOfDetailScreenWidget({
-    super.key,
-    required this.restaurant,
-  });
+  const BodyOfDetailScreenWidget({super.key, required this.restaurant});
 
   final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
+    final foods = restaurant.menus?.foods ?? [];
+    final drinks = restaurant.menus?.drinks ?? [];
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,25 +35,21 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                       ),
                       Text(
                         restaurant.city,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                    ),
+                    const Icon(Icons.star, color: Colors.yellow),
                     const SizedBox.square(dimension: 4),
                     Text(
                       restaurant.rating.toString(),
                       style: Theme.of(context).textTheme.bodyLarge,
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -62,6 +58,28 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
             Text(
               restaurant.description,
               style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const Text('Foods'),
+            Column(
+              children: [
+                ...foods.map(
+                  (food) => ListTile(
+                    leading: const Icon(Icons.fastfood),
+                    title: Text(food),
+                  ),
+                ),
+              ],
+            ),
+            const Text('Drinks'),
+            Column(
+              children: [
+                ...drinks.map(
+                  (drink) => ListTile(
+                    leading: const Icon(Icons.local_drink),
+                    title: Text(drink),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

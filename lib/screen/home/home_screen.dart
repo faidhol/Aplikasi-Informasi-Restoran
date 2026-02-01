@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Restaurant"),
-        //subtitle: const Text("Recomendation restaurant for you!"),
+        //child: const Text("Recomendation restaurant for you!"),
       ),
       body: Consumer<RestaurantListProvider>(
         builder: (context, value, child) {
