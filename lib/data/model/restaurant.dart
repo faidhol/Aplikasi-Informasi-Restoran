@@ -25,8 +25,8 @@ class Restaurant {
       final double rating = (ratingValue is int)
           ? ratingValue.toDouble()
           : (ratingValue is num)
-              ? ratingValue.toDouble()
-              : double.tryParse(ratingValue.toString()) ?? 0.0;
+          ? ratingValue.toDouble()
+          : double.tryParse(ratingValue.toString()) ?? 0.0;
 
       return Restaurant(
         id: json['id'].toString(),
@@ -48,18 +48,17 @@ class Menus {
   final List<String> foods;
   final List<String> drinks;
 
-  Menus({
-    required this.foods,
-    required this.drinks,
-  });
+  Menus({required this.foods, required this.drinks});
 
   factory Menus.fromJson(Map<String, dynamic> json) {
     return Menus(
-      foods: (json['foods'] as List<dynamic>?)
+      foods:
+          (json['foods'] as List<dynamic>?)
               ?.map((item) => item['name'].toString())
               .toList() ??
           [],
-      drinks: (json['drinks'] as List<dynamic>?)
+      drinks:
+          (json['drinks'] as List<dynamic>?)
               ?.map((item) => item['name'].toString())
               .toList() ??
           [],

@@ -16,10 +16,7 @@ class RestaurantCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 16,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -67,10 +64,7 @@ class RestaurantCard extends StatelessWidget {
                   const SizedBox.square(dimension: 6),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
+                      const Icon(Icons.star, color: Colors.yellow),
                       const SizedBox.square(dimension: 4),
                       Expanded(
                         child: Text(

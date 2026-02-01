@@ -13,8 +13,8 @@ class RestaurantDetailResponse {
 
   factory RestaurantDetailResponse.fromJson(Map<String, dynamic> json) {
     return RestaurantDetailResponse(
-      error: json["error"],
-      message: json["message"],
+      error: json["error"] ?? false,
+      message: json["message"] ?? "",
       restaurant: Restaurant.fromJson(json["restaurant"]),
     );
   }

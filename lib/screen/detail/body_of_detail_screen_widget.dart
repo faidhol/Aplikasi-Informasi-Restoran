@@ -19,6 +19,9 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
             Image.network(
               "https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}",
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return const Center(child: Icon(Icons.broken_image, size: 80));
+              },
             ),
             const SizedBox.square(dimension: 16),
             Row(

@@ -17,8 +17,9 @@ class BookmarkListProvider extends ChangeNotifier {
   }
 
   bool checkItemBookmark(Restaurant value) {
-    final restaurantInList =
-        _bookmarkList.where((element) => element.id == value.id);
+    final restaurantInList = _bookmarkList.where(
+      (element) => element.id == value.id,
+    );
     return restaurantInList.isNotEmpty;
   }
 }

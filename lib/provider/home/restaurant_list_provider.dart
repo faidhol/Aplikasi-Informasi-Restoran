@@ -5,9 +5,7 @@ import 'package:restaurant_app/static/restaurant_list_result_state.dart';
 class RestaurantListProvider extends ChangeNotifier {
   final ApiServices _apiServices;
 
-  RestaurantListProvider(
-    this._apiServices,
-  );
+  RestaurantListProvider(this._apiServices);
 
   RestaurantListResultState _resultState = RestaurantListNoneState();
 
@@ -21,14 +19,16 @@ class RestaurantListProvider extends ChangeNotifier {
       final result = await _apiServices.getRestaurantList();
 
       if (result.error) {
-        _resultState = RestaurantListErrorState(result.message);
+        _resultState = RestaurantListErrorState("Gagal memuat daftar restoran");
         notifyListeners();
       } else {
         _resultState = RestaurantListLoadedState(result.restaurants);
         notifyListeners();
       }
-    } on Exception catch (e) {
-      _resultState = RestaurantListErrorState(e.toString());
+    } catch (_) {
+      _resultState = RestaurantListErrorState(
+        "Terjadi kesalahan saat memuat daftar restoran",
+      );
       notifyListeners();
     }
   }

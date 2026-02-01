@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -35,9 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, value, child) {
           return switch (value.resultState) {
             RestaurantListLoadingState() => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            RestaurantListLoadedState(data: var restaurantList) => ListView.builder(
+              child: CircularProgressIndicator(),
+            ),
+            RestaurantListLoadedState(data: var restaurantList) =>
+              ListView.builder(
                 itemCount: restaurantList.length,
                 itemBuilder: (context, index) {
                   final restaurant = restaurantList[index];
@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             RestaurantListErrorState(error: var message) => Center(
-                child: Text(message),
-              ),
+              child: Text(message),
+            ),
             _ => const SizedBox(),
           };
         },

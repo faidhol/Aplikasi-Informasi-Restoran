@@ -1,4 +1,3 @@
-// todo-03-detail-01: create a new provider to handle a detail api
 import 'package:flutter/widgets.dart';
 import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:restaurant_app/static/restaurant_detail_result_state.dart';
@@ -6,9 +5,7 @@ import 'package:restaurant_app/static/restaurant_detail_result_state.dart';
 class RestaurantDetailProvider extends ChangeNotifier {
   final ApiServices _apiServices;
 
-  RestaurantDetailProvider(
-    this._apiServices,
-  );
+  RestaurantDetailProvider(this._apiServices);
 
   RestaurantDetailResultState _resultState = RestaurantDetailNoneState();
 
@@ -22,14 +19,18 @@ class RestaurantDetailProvider extends ChangeNotifier {
       final result = await _apiServices.getRestaurantDetail(id);
 
       if (result.error) {
-        _resultState = RestaurantDetailErrorState(result.message);
+        _resultState = RestaurantDetailErrorState(
+          "Gagal memuat detail restoran",
+        );
         notifyListeners();
       } else {
         _resultState = RestaurantDetailLoadedState(result.restaurant);
         notifyListeners();
       }
-    } on Exception catch (e) {
-      _resultState = RestaurantDetailErrorState(e.toString());
+    } catch (_) {
+      _resultState = RestaurantDetailErrorState(
+        "Terjadi kesalahan saat memuat detail restoran",
+      );
       notifyListeners();
     }
   }

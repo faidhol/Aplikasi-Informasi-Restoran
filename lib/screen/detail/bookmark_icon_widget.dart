@@ -7,10 +7,7 @@ import 'package:restaurant_app/provider/detail/bookmark_icon_provider.dart';
 class BookmarkIconWidget extends StatefulWidget {
   final Restaurant restaurant;
 
-  const BookmarkIconWidget({
-    super.key,
-    required this.restaurant,
-  });
+  const BookmarkIconWidget({super.key, required this.restaurant});
 
   @override
   State<BookmarkIconWidget> createState() => _BookmarkIconWidgetState();
@@ -23,8 +20,9 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
     final bookmarkIconProvider = context.read<BookmarkIconProvider>();
 
     Future.microtask(() {
-      final restaurantInList =
-          bookmarkListProvider.checkItemBookmark(widget.restaurant);
+      final restaurantInList = bookmarkListProvider.checkItemBookmark(
+        widget.restaurant,
+      );
       bookmarkIconProvider.isBookmarked = restaurantInList;
     });
 
