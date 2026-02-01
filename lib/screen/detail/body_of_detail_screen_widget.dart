@@ -39,6 +39,12 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      Text(
+                        restaurant.address ?? '',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ],
                   ),
                 ),
