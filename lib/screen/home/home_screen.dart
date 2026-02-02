@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      // ignore: use_build_context_synchronously
       context.read<RestaurantListProvider>().fetchRestaurantList();
     });
   }
@@ -24,9 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Restaurant"),
-      ),
+      appBar: AppBar(title: const Text("Restaurant")),
       body: Consumer<RestaurantListProvider>(
         builder: (context, value, child) {
           return switch (value.resultState) {

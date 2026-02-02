@@ -10,7 +10,9 @@ class ApiServices {
 
   Future<RestaurantListResponse> getRestaurantList() async {
     try {
-      final response = await http.get(Uri.parse("$_baseUrl/list"));
+      final response = await http
+          .get(Uri.parse("$_baseUrl/list"))
+          .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         return RestaurantListResponse.fromJson(jsonDecode(response.body));
@@ -19,14 +21,20 @@ class ApiServices {
       }
     } on SocketException {
       throw Exception("Tidak ada koneksi internet");
-    } catch (_) {
-      throw Exception("Terjadi kesalahan. Silakan coba lagi.");
+    } on HttpException {
+      throw Exception("Gagal terhubung ke server");
+    } on FormatException {
+      throw Exception("Format data tidak valid");
+    } catch (e) {
+      throw Exception("Terjadi kesalahan: ${e.toString()}");
     }
   }
 
   Future<RestaurantDetailResponse> getRestaurantDetail(String id) async {
     try {
-      final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
+      final response = await http
+          .get(Uri.parse("$_baseUrl/detail/$id"))
+          .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         return RestaurantDetailResponse.fromJson(jsonDecode(response.body));
@@ -35,8 +43,12 @@ class ApiServices {
       }
     } on SocketException {
       throw Exception("Tidak ada koneksi internet");
-    } catch (_) {
-      throw Exception("Terjadi kesalahan. Silakan coba lagi.");
+    } on HttpException {
+      throw Exception("Gagal terhubung ke server");
+    } on FormatException {
+      throw Exception("Format data tidak valid");
+    } catch (e) {
+      throw Exception("Terjadi kesalahan: ${e.toString()}");
     }
   }
 }

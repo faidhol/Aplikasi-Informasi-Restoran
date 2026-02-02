@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
         builder: (context, value, child) {
           return switch (value.indexBottomNavBar) {
             0 => const HomeScreen(),
-            _ => const BookmarkScreen(),
+            _ => const FavoriteScreen(),
           };
         },
       ),
@@ -30,9 +30,9 @@ class MainScreen extends StatelessWidget {
             tooltip: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmarks),
-            label: "Bookmarks",
-            tooltip: "Bookmarks",
+            icon: Icon(Icons.favorite),
+            label: "Favorites",
+            tooltip: "Favorites",
           ),
         ],
       ),

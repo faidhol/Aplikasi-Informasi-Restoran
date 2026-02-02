@@ -19,19 +19,15 @@ class RestaurantDetailProvider extends ChangeNotifier {
       final result = await _apiServices.getRestaurantDetail(id);
 
       if (result.error) {
-        _resultState = RestaurantDetailErrorState(
-          "Gagal memuat detail restoran",
-        );
-        notifyListeners();
+        _resultState = RestaurantDetailErrorState(result.message);
       } else {
         _resultState = RestaurantDetailLoadedState(result.restaurant);
-        notifyListeners();
       }
-    } catch (_) {
-      _resultState = RestaurantDetailErrorState(
-        "Terjadi kesalahan saat memuat detail restoran",
-      );
-    } finally {
+
+      notifyListeners();
+    } catch (e) {
+      _resultState =
+          RestaurantDetailErrorState("Gagal memuat data restoran");
       notifyListeners();
     }
   }

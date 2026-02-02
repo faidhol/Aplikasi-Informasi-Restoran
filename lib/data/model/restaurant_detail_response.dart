@@ -15,7 +15,9 @@ class RestaurantDetailResponse {
     return RestaurantDetailResponse(
       error: json["error"] ?? false,
       message: json["message"] ?? "",
-      restaurant: Restaurant.fromJson(json["restaurant"]),
+      restaurant: json["restaurant"] != null
+          ? Restaurant.fromJson(json["restaurant"])
+          : Restaurant.empty(),
     );
   }
 }
