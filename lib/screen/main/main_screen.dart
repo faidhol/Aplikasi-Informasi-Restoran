@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/main/index_nav_provider.dart';
-import 'package:restaurant_app/screen/bookmark/bookmark_screen.dart';
+import 'package:restaurant_app/screen/favorite/favorite_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,7 +21,7 @@ class MainScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: context.watch<IndexNavProvider>().indexBottomNavBar,
         onTap: (index) {
-          context.read<IndexNavProvider>().IndextBottomNavBar = index;
+          context.read<IndexNavProvider>().indextBottomNavBar = index;
         },
         items: const [
           BottomNavigationBarItem(

@@ -4,10 +4,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_app/provider/detail/bookmark_icon_provider.dart';
+import 'package:restaurant_app/provider/detail/favorite_icon_provider.dart';
 import 'package:restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:restaurant_app/screen/detail/body_of_detail_screen_widget.dart';
-import 'package:restaurant_app/screen/detail/bookmark_icon_widget.dart';
+import 'package:restaurant_app/screen/detail/favorite_icon_widget.dart';
 import 'package:restaurant_app/static/restaurant_detail_result_state.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -38,12 +38,12 @@ class _DetailScreenState extends State<DetailScreen> {
         title: const Text("Restaurant Detail"),
         actions: [
           ChangeNotifierProvider(
-            create: (context) => BookmarkIconProvider(),
+            create: (context) => FavoriteIconProvider(),
             child: Consumer<RestaurantDetailProvider>(
               builder: (context, value, child) {
                 return switch (value.resultState) {
                   RestaurantDetailLoadedState(data: var restaurant) =>
-                    BookmarkIconWidget(restaurant: restaurant),
+                    FavoriteIconWidget(restaurant: restaurant),
                   _ => const SizedBox(),
                 };
               },
