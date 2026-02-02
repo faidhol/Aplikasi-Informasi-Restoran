@@ -21,7 +21,7 @@ class MainScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: context.watch<IndexNavProvider>().indexBottomNavBar,
         onTap: (index) {
-          context.read<IndexNavProvider>().setIndextBottomNavBar = index;
+          context.read<IndexNavProvider>().IndextBottomNavBar = index;
         },
         items: const [
           BottomNavigationBarItem(

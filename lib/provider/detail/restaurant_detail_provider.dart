@@ -31,6 +31,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
       _resultState = RestaurantDetailErrorState(
         "Terjadi kesalahan saat memuat detail restoran",
       );
+    } finally {
       notifyListeners();
     }
   }

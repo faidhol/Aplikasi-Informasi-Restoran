@@ -5,7 +5,7 @@ class Restaurant {
   final String pictureId;
   final String city;
   final double rating;
-  final Menus? menus;
+  final Menu? menus;
   final String? address;
 
   Restaurant({
@@ -35,7 +35,7 @@ class Restaurant {
         pictureId: json['pictureId']?.toString() ?? '',
         city: json['city']?.toString() ?? '',
         rating: rating,
-        menus: json['menus'] != null ? Menus.fromJson(json['menus']) : null,
+        menus: json['menus'] != null ? Menu.fromJson(json['menus']) : null,
         address: json['address']?.toString(),
       );
     } catch (e) {
@@ -44,14 +44,13 @@ class Restaurant {
   }
 }
 
-class Menus {
+class Menu {
   final List<String> foods;
   final List<String> drinks;
 
-  Menus({required this.foods, required this.drinks});
-
-  factory Menus.fromJson(Map<String, dynamic> json) {
-    return Menus(
+  Menu({required this.foods, required this.drinks});
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
       foods:
           (json['foods'] as List<dynamic>?)
               ?.map((item) => item['name'].toString())

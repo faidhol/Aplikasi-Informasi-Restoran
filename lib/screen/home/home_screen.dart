@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
@@ -28,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Restaurant"),
-        //child: const Text("Recomendation restaurant for you!"),
       ),
       body: Consumer<RestaurantListProvider>(
         builder: (context, value, child) {

@@ -12,7 +12,7 @@ class BookmarkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Bookmark List")),
       body: Consumer<BookmarkListProvider>(
-        builder: (context, value, child) {
+        builder: (_, value,_) {
           final bookmarkList = value.bookmarkList;
           return switch (bookmarkList.isNotEmpty) {
             true => ListView.builder(
