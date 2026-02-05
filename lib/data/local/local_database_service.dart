@@ -8,15 +8,14 @@ class LocalDatabaseService {
 
   Future<void> createTables(Database database) async {
     await database.execute("""
-      CREATE TABLE $_tableName(
+CREATE TABLE restaurant(
         id TEXT PRIMARY KEY,
         name TEXT,
+        pictureId TEXT,
         description TEXT,
-        address TEXT,
-        longitude REAL,
-        latitude REAL,
-        like INTEGER,
-        image TEXT
+        city TEXT,
+        rating REAL,
+        address TEXT
       )
     """);
   }
@@ -53,7 +52,6 @@ class LocalDatabaseService {
 
   Future<Restaurant?> getItemById(String id) async {
     final db = await _initializeDb();
-
     final results = await db.query(
       _tableName,
       where: "id = ?",
@@ -66,8 +64,7 @@ class LocalDatabaseService {
 
   Future<int> removeItem(String id) async {
     final db = await _initializeDb();
-
-    final result = await db.delete(
+    final db.delete(
       _tableName,
       where: "id = ?",
       whereArgs: [id],
