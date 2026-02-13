@@ -34,11 +34,6 @@ class MainScreen extends StatelessWidget {
             label: "Favorites",
             tooltip: "Favorites",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-            tooltip: "Settings",
-          ),
         ],
       ),
     );

@@ -10,6 +10,7 @@ import 'package:restaurant_app/provider/theme/theme_provider.dart';
 import 'package:restaurant_app/provider/setting/reminder_provider.dart';
 import 'package:restaurant_app/screen/detail/detail_screen.dart';
 import 'package:restaurant_app/screen/main/main_screen.dart';
+import 'package:restaurant_app/screen/setting/setting_screen.dart';
 import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/style/theme/restaurant_theme.dart';
 import 'package:restaurant_app/utils/notification_helper.dart';
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
         NavigationRoute.detailRoute.name: (context) => DetailScreen(
           restaurantId: ModalRoute.of(context)?.settings.arguments as String,
         ),
-        NavigationRoute.settingRoute.name: (context) => const MainScreen(),
+        NavigationRoute.settingRoute.name: (context) => const SettingScreen(),
       },
     );
   }
