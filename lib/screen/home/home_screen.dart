@@ -16,8 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      // ignore: use_build_context_synchronously
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
       context.read<RestaurantListProvider>().fetchRestaurantList();
     });
   }
@@ -37,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: restaurantList.length,
                 itemBuilder: (context, index) {
                   final restaurant = restaurantList[index];
-
                   return RestaurantCard(
                     restaurant: restaurant,
                     onTap: () {

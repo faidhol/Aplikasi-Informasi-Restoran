@@ -17,10 +17,8 @@ import 'package:restaurant_app/utils/notification_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Init notification
   await NotificationHelper.init();
 
-  // Init providers that need async load
   final themeProvider = ThemeProvider();
   await themeProvider.loadTheme();
 
@@ -32,11 +30,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => IndexNavProvider()),
 
-        // Theme & Reminder
         ChangeNotifierProvider(create: (_) => themeProvider),
         ChangeNotifierProvider(create: (_) => reminderProvider),
 
-        // API
         Provider(create: (_) => ApiServices()),
         ChangeNotifierProvider(
           create: (context) =>
@@ -47,7 +43,6 @@ void main() async {
               RestaurantDetailProvider(context.read<ApiServices>()),
         ),
 
-        // Local Database
         Provider(create: (_) => LocalDatabaseService()),
         ChangeNotifierProvider(
           create: (context) =>

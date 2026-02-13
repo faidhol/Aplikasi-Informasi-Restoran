@@ -1,7 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/detail/favorite_icon_provider.dart';
@@ -24,10 +20,12 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
-      context.read<RestaurantDetailProvider>().fetchRestaurantDetail(
-        widget.restaurantId,
-      );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      context
+          .read<RestaurantDetailProvider>()
+          .fetchRestaurantDetail(widget.restaurantId);
     });
   }
 
@@ -38,7 +36,7 @@ class _DetailScreenState extends State<DetailScreen> {
         title: const Text("Restaurant Detail"),
         actions: [
           ChangeNotifierProvider(
-            create: (context) => FavoriteIconProvider(),
+            create: (_) => FavoriteIconProvider(),
             child: Consumer<RestaurantDetailProvider>(
               builder: (context, value, child) {
                 return switch (value.resultState) {
@@ -55,13 +53,13 @@ class _DetailScreenState extends State<DetailScreen> {
         builder: (context, value, child) {
           return switch (value.resultState) {
             RestaurantDetailLoadingState() => const Center(
-              child: CircularProgressIndicator(),
-            ),
+                child: CircularProgressIndicator(),
+              ),
             RestaurantDetailLoadedState(data: var restaurant) =>
               BodyOfDetailScreenWidget(restaurant: restaurant),
             RestaurantDetailErrorState(error: var message) => Center(
-              child: Text(message),
-            ),
+                child: Text(message),
+              ),
             _ => const SizedBox(),
           };
         },
