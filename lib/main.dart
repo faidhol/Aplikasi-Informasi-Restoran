@@ -29,7 +29,6 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => IndexNavProvider()),
-
         ChangeNotifierProvider(create: (_) => themeProvider),
         ChangeNotifierProvider(create: (_) => reminderProvider),
 
@@ -65,14 +64,14 @@ class MyApp extends StatelessWidget {
       title: 'Restaurant App',
       theme: RestaurantTheme.lightTheme,
       darkTheme: RestaurantTheme.darkTheme,
-      themeMode: themeProvider.themeMode,
+      themeMode: themeProvider.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
       initialRoute: NavigationRoute.mainRoute.name,
       routes: {
         NavigationRoute.mainRoute.name: (context) => const MainScreen(),
         NavigationRoute.detailRoute.name: (context) => DetailScreen(
-              restaurantId:
-                  ModalRoute.of(context)?.settings.arguments as String,
-            ),
+          restaurantId: ModalRoute.of(context)?.settings.arguments as String,
+        ),
+        NavigationRoute.settingRoute.name: (context) => const MainScreen(),
       },
     );
   }
