@@ -1,5 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -20,12 +20,14 @@ class NotificationHelper {
   }
 
   static Future<void> _configureLocalTimeZone() async {
-    tz.initializeTimeZones();
+  tz.initializeTimeZones();
 
-    final String timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+  final String timeZoneName =
+      await FlutterTimezone.getLocalTimezone();
 
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
-  }
+  tz.setLocalLocation(tz.getLocation(timeZoneName));
+}
+
 
   static Future<void> scheduleDailyReminder(bool isEnabled) async {
     if (!isEnabled) {
