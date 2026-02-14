@@ -1,4 +1,4 @@
-package com.dicoding.tourism_app
+package com.dicoding.restaurant_app
 
 import io.flutter.embedding.android.FlutterActivity
 

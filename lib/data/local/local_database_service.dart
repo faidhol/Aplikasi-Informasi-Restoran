@@ -63,14 +63,13 @@ CREATE TABLE restaurant(
   }
 
   Future<int> removeItem(String id) async {
-  final db = await _initializeDb();
-  final result = await db.delete(
-    _tableName,
-    where: "id = ?",
-    whereArgs: [id],
-  );
+    final db = await _initializeDb();
+    final result = await db.delete(
+      _tableName,
+      where: "id = ?",
+      whereArgs: [id],
+    );
 
-  return result;
-}
-
+    return result;
+  }
 }

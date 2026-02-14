@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dicoding.tourism_app"
+    namespace = "com.dicoding.restaurant_app"
     compileSdk = flutter.compileSdkVersion
 
     defaultConfig {
-        applicationId = "com.dicoding.tourism_app"
+        applicationId = "com.dicoding.restaurant_app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

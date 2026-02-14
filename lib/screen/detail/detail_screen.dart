@@ -23,9 +23,9 @@ class _DetailScreenState extends State<DetailScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
-      context
-          .read<RestaurantDetailProvider>()
-          .fetchRestaurantDetail(widget.restaurantId);
+      context.read<RestaurantDetailProvider>().fetchRestaurantDetail(
+        widget.restaurantId,
+      );
     });
   }
 
@@ -53,13 +53,13 @@ class _DetailScreenState extends State<DetailScreen> {
         builder: (context, value, child) {
           return switch (value.resultState) {
             RestaurantDetailLoadingState() => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: CircularProgressIndicator(),
+            ),
             RestaurantDetailLoadedState(data: var restaurant) =>
               BodyOfDetailScreenWidget(restaurant: restaurant),
             RestaurantDetailErrorState(error: var message) => Center(
-                child: Text(message),
-              ),
+              child: Text(message),
+            ),
             _ => const SizedBox(),
           };
         },

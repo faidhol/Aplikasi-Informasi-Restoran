@@ -35,8 +35,7 @@ void main() {
   });
 
   test('Should return error when API failed', () async {
-    when(() => mockApi.getRestaurantList())
-        .thenThrow(Exception('Error'));
+    when(() => mockApi.getRestaurantList()).thenThrow(Exception('Error'));
 
     await provider.fetchRestaurantList();
     expect(provider.resultState, isA<RestaurantListErrorState>());

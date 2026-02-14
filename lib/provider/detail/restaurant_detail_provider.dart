@@ -26,8 +26,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
 
       notifyListeners();
     } catch (e) {
-      _resultState =
-          RestaurantDetailErrorState("Gagal memuat data restoran");
+      _resultState = RestaurantDetailErrorState("Gagal memuat data restoran");
       notifyListeners();
     }
   }

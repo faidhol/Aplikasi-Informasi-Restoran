@@ -12,7 +12,7 @@ class BookmarkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Favorite List")),
       body: Consumer<FavoriteListProvider>(
-        builder: (_, value,_) {
+        builder: (_, value, _) {
           final favoriteList = value.favoriteList;
           return switch (favoriteList.isNotEmpty) {
             true => ListView.builder(

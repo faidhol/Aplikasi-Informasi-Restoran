@@ -13,15 +13,14 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
-void initState() {
-  super.initState();
+  void initState() {
+    super.initState();
 
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!mounted) return;
-    context.read<LocalDatabaseProvider>().loadAllRestaurantValue();
-  });
-}
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<LocalDatabaseProvider>().loadAllRestaurantValue();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
