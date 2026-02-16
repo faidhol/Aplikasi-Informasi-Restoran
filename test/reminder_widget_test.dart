@@ -13,7 +13,7 @@ void main() {
             body: Consumer<ReminderProvider>(
               builder: (context, provider, _) {
                 return Switch(
-                  value: provider.isEnabled, // ✅ sesuai provider kamu
+                  value: provider.isEnabled, 
                   onChanged: (value) {
                     provider.toggleReminder(value);
                   },

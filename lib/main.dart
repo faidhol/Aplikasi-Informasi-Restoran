@@ -59,7 +59,6 @@ Future<void> main({bool isTest = false}) async {
   );
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

@@ -8,10 +8,9 @@ void main() {
 
   testWidgets('Full app test - toggle reminder',
       (WidgetTester tester) async {
-    app.main(isTest: true); // 🔥 penting
+    app.main(isTest: true); 
     await tester.pumpAndSettle();
 
-    // Navigasi ke Settings kalau pakai bottom nav
     await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
 
