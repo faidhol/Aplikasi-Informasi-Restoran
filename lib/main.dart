@@ -15,16 +15,21 @@ import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/style/theme/restaurant_theme.dart';
 import 'package:restaurant_app/utils/notification_helper.dart';
 
-void main() async {
+Future<void> main({bool isTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await NotificationHelper.init();
+  if (!isTest) {
+    await NotificationHelper.init();
+  }
 
   final themeProvider = ThemeProvider();
   await themeProvider.loadTheme();
 
   final reminderProvider = ReminderProvider();
-  await reminderProvider.loadReminder();
+
+  if (!isTest) {
+    await reminderProvider.loadReminder();
+  }
 
   runApp(
     MultiProvider(
@@ -53,6 +58,7 @@ void main() async {
     ),
   );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -7,20 +7,52 @@ class NotificationHelper {
       FlutterLocalNotificationsPlugin();
 
   static Future<void> init() async {
-  const androidSettings =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
 
-  const settings = InitializationSettings(android: androidSettings);
+    const settings = InitializationSettings(android: androidSettings);
 
-  await _notifications.initialize(settings);
+    await _notifications.initialize(settings);
 
-  tz.initializeTimeZones();
-}
+    tz.initializeTimeZones();
+  }
 
-  static Future<void> scheduleDailyReminder(bool isEnabled) async {
+  static Future<bool> _requestNotificationPermission() async {
+    final androidImplementation = _notifications
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+
+    final isGranted =
+        await androidImplementation?.areNotificationsEnabled() ?? false;
+
+    if (isGranted) return true;
+
+    return await androidImplementation?.requestNotificationsPermission() ??
+        false;
+  }
+
+  static Future<bool> _requestExactAlarmPermission() async {
+    final androidImplementation = _notifications
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+
+    return await androidImplementation?.requestExactAlarmsPermission() ?? false;
+  }
+
+  static Future<bool> scheduleDailyReminder(bool isEnabled) async {
+    final notificationPermission = await _requestNotificationPermission();
+    final exactAlarmPermission = await _requestExactAlarmPermission();
+
+    if (!notificationPermission || !exactAlarmPermission) {
+      return false;
+    }
+
     if (!isEnabled) {
       await _notifications.cancel(0);
-      return;
+      return true;
     }
 
     final now = tz.TZDateTime.now(tz.local);
@@ -55,5 +87,7 @@ class NotificationHelper {
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
+
+    return true;
   }
 }
