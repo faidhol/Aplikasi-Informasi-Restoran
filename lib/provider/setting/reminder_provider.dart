@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:restaurant_app/utils/notification_helper.dart';
 
+typedef ReminderScheduler = Future<bool> Function(bool isEnabled);
+
 class ReminderProvider extends ChangeNotifier {
+  ReminderProvider({ReminderScheduler? reminderScheduler})
+    : _reminderScheduler =
+          reminderScheduler ?? NotificationHelper.scheduleDailyReminder;
+
   static const _key = 'dailyReminder';
+  final ReminderScheduler _reminderScheduler;
   bool _isEnabled = false;
 
   bool get isEnabled => _isEnabled;
@@ -19,7 +26,7 @@ class ReminderProvider extends ChangeNotifier {
     _isEnabled = value;
     await prefs.setBool(_key, value);
 
-    await NotificationHelper.scheduleDailyReminder(value);
+    await _reminderScheduler(value);
     notifyListeners();
   }
 }
