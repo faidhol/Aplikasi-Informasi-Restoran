@@ -23,6 +23,7 @@ Future<void> main({bool isTest = false}) async {
   }
 
   final themeProvider = ThemeProvider();
+  
   if (!isTest) {
     await themeProvider.loadTheme();
   }
