@@ -23,7 +23,9 @@ Future<void> main({bool isTest = false}) async {
   }
 
   final themeProvider = ThemeProvider();
-  await themeProvider.loadTheme();
+  if (!isTest) {
+    await themeProvider.loadTheme();
+  }
 
   final reminderProvider = ReminderProvider();
 
